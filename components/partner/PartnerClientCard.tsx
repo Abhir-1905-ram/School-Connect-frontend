@@ -191,7 +191,9 @@ export function PartnerClientCard({ client, onEdit }: PartnerClientCardProps) {
         confirmLabel={pendingStatus === "paid" ? "Mark as Paid" : "Mark as Unpaid"}
         variant={pendingStatus === "paid" ? "success" : "warning"}
         isLoading={mutation.isPending}
-        onConfirm={() => pendingStatus && mutation.mutate(pendingStatus)}
+        onConfirm={() => {
+          if (pendingStatus) mutation.mutate(pendingStatus);
+        }}
       />
     </>
   );

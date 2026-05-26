@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# School Connect — Frontend
 
-## Getting Started
+Next.js 14 app for the School Connect partner and admin portal.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Set `NEXT_PUBLIC_API_URL` in `.env.local` to your backend API (e.g. `http://localhost:5000/api/v1`).
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Import the repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Import [School-Connect-frontend](https://github.com/Abhir-1905-ram/School-Connect-frontend).
+3. **Root Directory:** leave as `.` (repo root).
+4. **Framework Preset:** Next.js (auto-detected).
+5. **Build Command:** `npm run build`
+6. **Output Directory:** (default, leave empty)
+
+### 2. Environment variables
+
+In **Project → Settings → Environment Variables**, add:
+
+| Name | Value | Environments |
+|------|--------|--------------|
+| `NEXT_PUBLIC_API_URL` | `https://YOUR-BACKEND-URL/api/v1` | Production, Preview, Development |
+
+Use your deployed backend URL (Railway, Render, etc.). Must be **HTTPS** in production.
+
+Example:
+
+```
+NEXT_PUBLIC_API_URL=https://school-connect-api.onrender.com/api/v1
+```
+
+### 3. Deploy
+
+Click **Deploy**. Vercel will build and host the app at `https://your-project.vercel.app`.
+
+### 4. Connect the backend (required)
+
+Your API must allow the Vercel origin. On the **backend**, set:
+
+```env
+CLIENT_URL=https://your-project.vercel.app
+```
+
+Redeploy the backend after changing `CLIENT_URL`. Without this, login and API calls will fail with CORS errors.
+
+### 5. Optional — custom domain
+
+In Vercel: **Project → Settings → Domains** → add your domain, then update backend `CLIENT_URL` to match.
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Run production build locally |
+| `npm run lint` | ESLint |
