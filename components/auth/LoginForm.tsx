@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -295,7 +296,11 @@ export function LoginForm() {
       </motion.div>
 
       <p className="relative z-10 mt-8 text-center text-xs text-slate-500">
-        School Connect © 2025
+        <Link href="/" className="text-slate-400 hover:text-white">
+          ← Back to home
+        </Link>
+        <span className="mx-2 text-slate-600">·</span>
+        School Connect © {new Date().getFullYear()}
       </p>
     </div>
   );

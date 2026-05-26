@@ -10,13 +10,11 @@ export function middleware(request: NextRequest) {
   const isLogin = pathname === "/login";
   const isAdminRoute = pathname.startsWith("/admin");
   const isPartnerRoute = pathname.startsWith("/partner");
-  const isProtected = isAdminRoute || isPartnerRoute || pathname === "/";
+  const isProtected = isAdminRoute || isPartnerRoute;
 
   if (!token && isProtected) {
     const loginUrl = new URL("/login", request.url);
-    if (pathname !== "/") {
-      loginUrl.searchParams.set("from", pathname);
-    }
+    loginUrl.searchParams.set("from", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
