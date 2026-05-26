@@ -1,4 +1,5 @@
 import axios, { type InternalAxiosRequestConfig } from "axios";
+import { API_BASE_URL } from "@/lib/api-config";
 import { clearAuthCookies, TOKEN_COOKIE } from "@/lib/auth-cookies";
 
 const TOKEN_KEY = TOKEN_COOKIE;
@@ -8,7 +9,7 @@ interface RequestConfigWithMeta extends InternalAxiosRequestConfig {
 }
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1",
+  baseURL: API_BASE_URL,
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
