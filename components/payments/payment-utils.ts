@@ -26,12 +26,9 @@ export function formatPaymentDate(date: string): string {
 export function getThisMonthCollections(
   monthly: { month: string; amount: number }[]
 ): number {
-  const key = dayjs().format("YYYY-M");
   const padded = dayjs().format("YYYY-MM");
-  const match = monthly.find(
-    (m) => m.month === padded || m.month.replace("-0", "-") === key
-  );
-  return match?.amount ?? monthly[monthly.length - 1]?.amount ?? 0;
+  const match = monthly.find((m) => m.month === padded);
+  return match?.amount ?? 0;
 }
 
 export function getCollectionRate(
