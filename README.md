@@ -10,7 +10,9 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Set `NEXT_PUBLIC_API_URL` in `.env.local` to your backend API (e.g. `http://localhost:5000/api/v1`).
+Set `NEXT_PUBLIC_API_URL` in `.env.local` to your backend API.
+
+**Production (Railway):** `https://school-connect-backend-production.up.railway.app/api/v1`
 
 ## Deploy on Vercel
 
@@ -29,15 +31,7 @@ In **Project → Settings → Environment Variables**, add:
 
 | Name | Value | Environments |
 |------|--------|--------------|
-| `NEXT_PUBLIC_API_URL` | `https://YOUR-BACKEND-URL/api/v1` | Production, Preview, Development |
-
-Use your deployed backend URL (Railway, Render, etc.). Must be **HTTPS** in production.
-
-Example:
-
-```
-NEXT_PUBLIC_API_URL=https://school-connect-api.onrender.com/api/v1
-```
+| `NEXT_PUBLIC_API_URL` | `https://school-connect-backend-production.up.railway.app/api/v1` | Production, Preview, Development |
 
 ### 3. Deploy
 
